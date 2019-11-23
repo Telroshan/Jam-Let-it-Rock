@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public Action OnRoundEnd;
 
-    private void Awake()
+    private void Start()
     {
         countDown.OnTimesUp += EndTurn;
         player1 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 1);

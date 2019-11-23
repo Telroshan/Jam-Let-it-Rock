@@ -73,20 +73,14 @@ public class PlayerController : MonoBehaviour
         if (Ready) return;
         Debug.Log("JOIN");
         playerId = !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
-        onJoined?.Invoke(this);
-    }
-
-    public void StartGame(InputAction.CallbackContext callbackContext)
-    {
-        if (!callbackContext.performed) return;
-        if (!Ready || !_otherPlayer.Ready)
+        if (playerId == 1 && !_playerInput.uiInputModule)
         {
-            Debug.LogWarning("Not all players are ready !");
-            return;
+            _playerInput.uiInputModule = _otherPlayer._playerInput.uiInputModule;
+            _otherPlayer._playerInput.uiInputModule = null;
+            _playerInput.uiInputModule.actionsAsset = _playerInput.actions;
+            _playerInput.uiInputModule.UpdateModule();
         }
-
-        Debug.Log("Start game");
-        SceneManager.LoadScene("Game");
+        onJoined?.Invoke(this);
     }
 
     public void Disconnected()

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Menu
 {
@@ -9,6 +10,7 @@ namespace Menu
         [SerializeField] private PlayerStateUi[] playerPreparationUis;
         private PlayerController[] _playerControllers;
         [SerializeField] private TextMeshProUGUI joinTip;
+        [SerializeField] private Button playButton;
 
         private void Awake()
         {
@@ -35,6 +37,7 @@ namespace Menu
             if (_playerControllers.All(x => x.playerId > 0))
             {
                 joinTip.enabled = false;
+                playButton.interactable = true;
             }
         }
 
@@ -42,6 +45,7 @@ namespace Menu
         {
             playerPreparationUis[playerController.playerId - 1].OnPlayerLeft();
             joinTip.enabled = true;
+            playButton.interactable = false;
         }
     }
 }

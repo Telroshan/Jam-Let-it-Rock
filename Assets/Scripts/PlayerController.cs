@@ -17,8 +17,14 @@ public class PlayerController : MonoBehaviour
 
     private PlayerController _otherPlayer;
     private PlayerInput _playerInput;
-    private bool _inGame;
-
+    private GameMode _gameMode;
+    private enum GameMode
+    {
+        InGame,
+        SmashMinigame,
+        DontPressMinigame
+    }
+    
     public Action<PlayerController> onJoined;
     public Action<PlayerController> onDisconnected;
 
@@ -39,11 +45,11 @@ public class PlayerController : MonoBehaviour
     {
         _selectedMove = Move.None;
         Debug.Log("Begin turn");
-        if (!_inGame)
+        if (_gameMode != GameMode.InGame)
         {
             Debug.Log("Switched to game map");
             _playerInput.SwitchCurrentActionMap("Game");
-            _inGame = true;
+            _gameMode = GameMode.InGame;
             _playerInput.uiInputModule = null;
         }
     }
@@ -91,7 +97,7 @@ public class PlayerController : MonoBehaviour
     public void Disconnected()
     {
         onDisconnected?.Invoke(this);
-        if (!_inGame)
+        if (_gameMode != GameMode.InGame)
         {
             playerId = 0;
         }

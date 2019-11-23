@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float roundRestartDelay = 2f;
 
     [SerializeField] private EndgameUi endgameUi;
+
+    public Action OnRoundEnd;
 
     private void Awake()
     {
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        OnRoundEnd?.Invoke();
         StartCoroutine(StartNewRound());
     }
 

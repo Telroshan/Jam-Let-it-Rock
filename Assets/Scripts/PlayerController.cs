@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public int score;
 
     public int playerId;
+    private bool Ready => playerId > 0;
 
     private PlayerController _otherPlayer;
     private PlayerInput _playerInput;
@@ -67,16 +68,16 @@ public class PlayerController : MonoBehaviour
     public void Join(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        if (playerId > 0) return;
+        if (Ready) return;
         Debug.Log("JOIN");
-        playerId = _otherPlayer.playerId == 2 || _otherPlayer.playerId == 0 ? 1 : 2;
+        playerId = !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
         onJoined?.Invoke();
     }
 
     public void StartGame(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        if (playerId == 0 || _otherPlayer.playerId == 0)
+        if (!Ready || !_otherPlayer.Ready)
         {
             Debug.LogWarning("Not all players are ready !");
             return;

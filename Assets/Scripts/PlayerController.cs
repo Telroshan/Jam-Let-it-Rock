@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public int playerId;
 
-    [SerializeField] private PlayerController otherPlayer;
+    private PlayerController _otherPlayer;
     private PlayerInput _playerInput;
     private bool _actionMapGameSwitch;
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         _playerInput = GetComponent<PlayerInput>();
+        _otherPlayer = FindObjectsOfType<PlayerController>().First(x => x != this);
     }
 
     public Move GetMove()
@@ -67,14 +69,14 @@ public class PlayerController : MonoBehaviour
         if (!callbackContext.performed) return;
         if (playerId > 0) return;
         Debug.Log("JOIN");
-        playerId = otherPlayer.playerId == 2 || otherPlayer.playerId == 0 ? 1 : 2;
+        playerId = _otherPlayer.playerId == 2 || _otherPlayer.playerId == 0 ? 1 : 2;
         onJoined?.Invoke();
     }
 
     public void StartGame(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        if (playerId == 0 || otherPlayer.playerId == 0)
+        if (playerId == 0 || _otherPlayer.playerId == 0)
         {
             Debug.LogWarning("Not all players are ready !");
             return;

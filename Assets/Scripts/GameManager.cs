@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float roundRestartDelay = 2f;
 
+    [SerializeField] private EndgameUi endgameUi;
+
     private void Awake()
     {
         countDown.OnTimesUp += EndTurn;
@@ -38,15 +40,7 @@ public class GameManager : MonoBehaviour
 
         if (Mathf.Abs(player1.score - player2.score) >= 2)
         {
-            if (player1.score > player2.score)
-            {
-                Debug.Log("Player 1 wins");
-            }
-            else
-            {
-                Debug.Log("Player 2 wins");
-            }
-
+            EndGame();
             return;
         }
 
@@ -59,5 +53,19 @@ public class GameManager : MonoBehaviour
         countDown.Restart();
         player1.BeginTurn();
         player2.BeginTurn();
+    }
+
+    private void EndGame()
+    {
+        if (player1.score > player2.score)
+        {
+            Debug.Log("Player 1 wins");
+            endgameUi.Init("Player 1");
+        }
+        else
+        {
+            Debug.Log("Player 2 wins");
+            endgameUi.Init("Player 2");
+        }
     }
 }

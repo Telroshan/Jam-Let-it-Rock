@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float roundRestartDelay = 2f;
 
     [SerializeField] private EndgameUi endgameUi;
+    
+    [SerializeField] private TextMeshProUGUI scorePlayer1;
+    [SerializeField] private TextMeshProUGUI scorePlayer2;
 
     public Action OnRoundEnd;
 
@@ -45,7 +49,9 @@ public class GameManager : MonoBehaviour
         {
             ++player2.score;
         }
-
+        
+        UpdateScore();
+        
         if (Mathf.Abs(player1.score - player2.score) >= 2)
         {
             EndGame();
@@ -54,6 +60,12 @@ public class GameManager : MonoBehaviour
 
         OnRoundEnd?.Invoke();
         StartCoroutine(StartNewRound());
+    }
+
+    private void UpdateScore()
+    {
+        scorePlayer1.text = player1.score.ToString();
+        scorePlayer2.text = player2.score.ToString();
     }
 
     private IEnumerator StartNewRound()

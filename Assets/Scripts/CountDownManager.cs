@@ -10,6 +10,7 @@ public class CountDownManager : MonoBehaviour
     public float StartTimeBase = 5;
     public TextMeshProUGUI TextMeshProUgui;
     public Image LoadingBar;
+    public GameObject LoadingBarObject;
 
     /// <summary>
     /// Called when time remaining == 0
@@ -33,6 +34,9 @@ public class CountDownManager : MonoBehaviour
     public void Restart()
     {
         _remainingTime = StartTimeBase;
+        LoadingBarObject.SetActive(true);
+        var loadingBarRectTransform = LoadingBar.transform as RectTransform;
+        loadingBarRectTransform.sizeDelta = new Vector2(900, loadingBarRectTransform.sizeDelta.y);
     }
 
     // Update is called once per frame
@@ -45,6 +49,7 @@ public class CountDownManager : MonoBehaviour
         {
             _remainingTime = 0;
             OnTimesUp?.Invoke();
+            LoadingBarObject.SetActive(false);
         }
 
         var loadingBarRectTransform = LoadingBar.transform as RectTransform;

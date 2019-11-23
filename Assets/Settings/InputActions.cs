@@ -123,6 +123,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""12290d44-0885-4eab-8e98-36554cdb588c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -145,6 +153,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f9326d7-e0c1-4e1d-a143-51291da2e99e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b70237b-9b28-4c84-866c-c6aaed679d6e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -189,6 +219,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Join = m_Menu.FindAction("Join", throwIfNotFound: true);
+        m_Menu_StartGame = m_Menu.FindAction("StartGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,11 +319,13 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_Join;
+    private readonly InputAction m_Menu_StartGame;
     public struct MenuActions
     {
         private @InputActions m_Wrapper;
         public MenuActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Join => m_Wrapper.m_Menu_Join;
+        public InputAction @StartGame => m_Wrapper.m_Menu_StartGame;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,6 +338,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Join.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
                 @Join.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
                 @Join.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
+                @StartGame.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnStartGame;
+                @StartGame.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnStartGame;
+                @StartGame.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnStartGame;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -312,6 +348,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Join.started += instance.OnJoin;
                 @Join.performed += instance.OnJoin;
                 @Join.canceled += instance.OnJoin;
+                @StartGame.started += instance.OnStartGame;
+                @StartGame.performed += instance.OnStartGame;
+                @StartGame.canceled += instance.OnStartGame;
             }
         }
     }
@@ -343,5 +382,6 @@ public class @InputActions : IInputActionCollection, IDisposable
     public interface IMenuActions
     {
         void OnJoin(InputAction.CallbackContext context);
+        void OnStartGame(InputAction.CallbackContext context);
     }
 }

@@ -347,26 +347,6 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 871423359}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
-      value: d47a0e22-8e78-45ab-8d90-9d9f213d0f50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
-      value: Menu/Join[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/space]
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_DefaultActionMap
-      value: b150f7f4-c96d-4a53-8020-f53f5c6656d7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47fe1f13e744644dab5ddac4ea3e49e, type: 3}
 --- !u!1001 &844809595
@@ -989,26 +969,6 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 1151607213}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
-      value: d47a0e22-8e78-45ab-8d90-9d9f213d0f50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
-      value: Menu/Join[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/space]
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_DefaultActionMap
-      value: b150f7f4-c96d-4a53-8020-f53f5c6656d7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47fe1f13e744644dab5ddac4ea3e49e, type: 3}
 --- !u!1001 &4357667473613528513

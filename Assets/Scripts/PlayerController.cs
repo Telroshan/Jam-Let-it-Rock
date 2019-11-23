@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
@@ -11,12 +12,15 @@ public class PlayerController : MonoBehaviour
     public int playerId;
 
     [SerializeField] private PlayerController otherPlayer;
+    private PlayerInput _playerInput;
+    private bool _actionMapGameSwitch;
 
     public Action onJoined;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     public Move GetMove()
@@ -28,6 +32,13 @@ public class PlayerController : MonoBehaviour
     public void BeginTurn()
     {
         _selectedMove = Move.None;
+        Debug.Log("Begin turn");
+        if (!_actionMapGameSwitch)
+        {
+            Debug.Log("Switched to game map");
+            _playerInput.SwitchCurrentActionMap("Game");
+            _actionMapGameSwitch = true;
+        }
     }
 
     public void Rock(InputAction.CallbackContext callbackContext)
@@ -58,5 +69,17 @@ public class PlayerController : MonoBehaviour
         Debug.Log("JOIN");
         playerId = otherPlayer.playerId == 2 || otherPlayer.playerId == 0 ? 1 : 2;
         onJoined?.Invoke();
+    }
+
+    public void StartGame(InputAction.CallbackContext callbackContext)
+    {
+        if (!callbackContext.performed) return;
+        if (playerId == 0 || otherPlayer.playerId == 0)
+        {
+            Debug.LogWarning("Not all players are ready !");
+            return;
+        }
+        Debug.Log("Start game");
+        SceneManager.LoadScene("Game");
     }
 }

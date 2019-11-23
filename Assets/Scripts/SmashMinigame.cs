@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.XR;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -55,16 +51,10 @@ public class SmashMinigame : MonoBehaviour
         Cursor.transform.position += new Vector3(direction * moveUnit, 0, 0);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         minigameInput = new Random().Next(0, Sprites.Length);
         Player1Input.sprite = Sprites[minigameInput];
         Player2Input.sprite = Sprites[minigameInput];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

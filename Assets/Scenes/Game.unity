@@ -528,6 +528,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6595016549430878164, guid: 60ef3d0e15e15e6429a6412477f4992d,
+        type: 3}
+      propertyPath: StartTimeBase
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6595016549430878154, guid: 60ef3d0e15e15e6429a6412477f4992d,
         type: 3}
       propertyPath: m_textInfo.characterCount

@@ -9,6 +9,8 @@ using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
+    private SmashMinigame _smashMinigame;
+    
     private Move _selectedMove = Move.None;
     public int score;
 
@@ -17,8 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerController _otherPlayer;
     private PlayerInput _playerInput;
-    private GameMode _gameMode;
-    private enum GameMode
+    public GameMode gameMode;
+    public enum GameMode
     {
         InGame,
         SmashMinigame,
@@ -45,11 +47,11 @@ public class PlayerController : MonoBehaviour
     {
         _selectedMove = Move.None;
         Debug.Log("Begin turn");
-        if (_gameMode != GameMode.InGame)
+        if (gameMode != GameMode.InGame)
         {
             Debug.Log("Switched to game map");
             _playerInput.SwitchCurrentActionMap("Game");
-            _gameMode = GameMode.InGame;
+            gameMode = GameMode.InGame;
             _playerInput.uiInputModule = null;
         }
     }
@@ -57,22 +59,47 @@ public class PlayerController : MonoBehaviour
     public void Rock(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        Debug.Log("ROCK");
-        _selectedMove = Move.Rock;
+        switch (gameMode)
+        {
+            case GameMode.InGame:
+                Debug.Log("ROCK");
+                _selectedMove = Move.Rock;
+                break;
+            case GameMode.SmashMinigame:
+                _smashMinigame.getPressedInput(playerId, Move.Rock);
+                break;
+        }
+       
     }
 
     public void Paper(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        Debug.Log("PAPER");
-        _selectedMove = Move.Paper;
+        switch (gameMode)
+        {
+            case GameMode.InGame:
+                Debug.Log("PAPER");
+                _selectedMove = Move.Paper;
+                break;
+            case GameMode.SmashMinigame:
+                _smashMinigame.getPressedInput(playerId, Move.Paper);
+                break;
+        }
     }
 
     public void Scissors(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        Debug.Log("SCISSORS");
-        _selectedMove = Move.Scissors;
+        switch (gameMode)
+        {
+            case GameMode.InGame:
+                Debug.Log("SCISSORS");
+                _selectedMove = Move.Scissors;
+                break;
+            case GameMode.SmashMinigame:
+                _smashMinigame.getPressedInput(playerId, Move.Scissors);
+                break;
+        }
     }
 
     public void Join(InputAction.CallbackContext callbackContext)
@@ -97,7 +124,7 @@ public class PlayerController : MonoBehaviour
     public void Disconnected()
     {
         onDisconnected?.Invoke(this);
-        if (_gameMode != GameMode.InGame)
+        if (gameMode != GameMode.InGame)
         {
             playerId = 0;
         }

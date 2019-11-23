@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Player 1 plays " + move1 + " | Player 2 plays " + move2);
 
-        // TODO : win condition check
         if (move1 == move2)
         {
             Debug.Log("Draw");
@@ -48,6 +47,13 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        NewRound();
+    }
+
+    private void NewRound()
+    {
         countDown.Restart();
+        player1.BeginTurn();
+        player2.BeginTurn();
     }
 }

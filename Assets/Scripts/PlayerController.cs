@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public Move GetMove()
     {
         if (_selectedMove != Move.None) return _selectedMove;
-        return (Move) Random.Range((int) Move.Rock, (int) Move.Scissors);
+        return (Move) Random.Range((int) Move.Rock, (int) Move.Scissors + 1);
     }
 
     public void BeginTurn()

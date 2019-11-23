@@ -6,7 +6,7 @@ namespace Menu
 {
     public class MenuInputManager : MonoBehaviour
     {
-        [SerializeField] private PlayerPreparationUi[] playerPreparationUis;
+        [SerializeField] private PlayerStateUi[] playerPreparationUis;
         private PlayerController[] _playerControllers;
         [SerializeField] private TextMeshProUGUI joinTip;
 

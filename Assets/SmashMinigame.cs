@@ -16,17 +16,25 @@ public class SmashMinigame : MonoBehaviour
     [SerializeField] private Image ProgressBarBackground;
     [SerializeField] private ParticleSystem Player1ParticleSystem;
     [SerializeField] private ParticleSystem Player2ParticleSystem;
-    
+
     public int GapNeededToWinInInputs = 10;
 
     private int countOfButtons = 0; // If -50 Player 1 Lose, and +50 Player 1 win
 
     private int minigameInput;
-    
+
+    private void Awake()
+    {
+        foreach (PlayerController playerController in FindObjectsOfType<PlayerController>())
+        {
+            playerController.SmashMinigame = this;
+        }
+    }
+
     public void getPressedInput(int playerId, Move move)
     {
-        if (move.CompareTo(minigameInput + 1) != 0) return;
-        
+        if (move.CompareTo((Move) (minigameInput + 1)) != 0) return;
+
         if (playerId == 1)
         {
             countOfButtons += 1;
@@ -43,10 +51,10 @@ public class SmashMinigame : MonoBehaviour
 
     private void MoveCursor(int direction)
     {
-        float moveUnit = (ProgressBarBackground.GetComponent<Renderer>().bounds.size.x / 2) / GapNeededToWinInInputs;
+        float moveUnit = (ProgressBarBackground.GetComponent<RectTransform>().rect.width / 2) / GapNeededToWinInInputs;
         Cursor.transform.position += new Vector3(direction * moveUnit, 0, 0);
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +66,5 @@ public class SmashMinigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

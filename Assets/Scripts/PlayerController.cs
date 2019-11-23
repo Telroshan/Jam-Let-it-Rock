@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Linq;
-using Menu;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
-    private SmashMinigame _smashMinigame;
-    
     private Move _selectedMove = Move.None;
     public int score;
 
@@ -20,14 +16,17 @@ public class PlayerController : MonoBehaviour
     private PlayerController _otherPlayer;
     private PlayerInput _playerInput;
     public GameMode gameMode = GameMode.Menu;
+
+    public SmashMinigame SmashMinigame { get; set; }
+
     public enum GameMode
     {
         Menu,
         InGame,
         SmashMinigame,
-        DontPressMinigame
+        DontPressMinigame,
     }
-    
+
     public Action<PlayerController> onJoined;
     public Action<PlayerController> onDisconnected;
 
@@ -67,10 +66,9 @@ public class PlayerController : MonoBehaviour
                 _selectedMove = Move.Rock;
                 break;
             case GameMode.SmashMinigame:
-                _smashMinigame.getPressedInput(playerId, Move.Rock);
+                SmashMinigame.getPressedInput(playerId, Move.Rock);
                 break;
         }
-       
     }
 
     public void Paper(InputAction.CallbackContext callbackContext)
@@ -83,7 +81,7 @@ public class PlayerController : MonoBehaviour
                 _selectedMove = Move.Paper;
                 break;
             case GameMode.SmashMinigame:
-                _smashMinigame.getPressedInput(playerId, Move.Paper);
+                SmashMinigame.getPressedInput(playerId, Move.Paper);
                 break;
         }
     }
@@ -98,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 _selectedMove = Move.Scissors;
                 break;
             case GameMode.SmashMinigame:
-                _smashMinigame.getPressedInput(playerId, Move.Scissors);
+                SmashMinigame.getPressedInput(playerId, Move.Scissors);
                 break;
         }
     }

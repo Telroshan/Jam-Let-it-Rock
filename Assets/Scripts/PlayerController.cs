@@ -15,9 +15,10 @@ public class PlayerController : MonoBehaviour
 
     private PlayerController _otherPlayer;
     private PlayerInput _playerInput;
-    private bool _actionMapGameSwitch;
+    private bool _inGame;
 
-    public Action onJoined;
+    public Action<PlayerController> onJoined;
+    public Action<PlayerController> onDisconnected;
 
     private void Awake()
     {
@@ -36,11 +37,11 @@ public class PlayerController : MonoBehaviour
     {
         _selectedMove = Move.None;
         Debug.Log("Begin turn");
-        if (!_actionMapGameSwitch)
+        if (!_inGame)
         {
             Debug.Log("Switched to game map");
             _playerInput.SwitchCurrentActionMap("Game");
-            _actionMapGameSwitch = true;
+            _inGame = true;
         }
     }
 
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
         if (Ready) return;
         Debug.Log("JOIN");
         playerId = !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
-        onJoined?.Invoke();
+        onJoined?.Invoke(this);
     }
 
     public void StartGame(InputAction.CallbackContext callbackContext)
@@ -82,7 +83,17 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("Not all players are ready !");
             return;
         }
+
         Debug.Log("Start game");
         SceneManager.LoadScene("Game");
+    }
+
+    public void Disconnected()
+    {
+        onDisconnected?.Invoke(this);
+        if (!_inGame)
+        {
+            playerId = 0;
+        }
     }
 }

@@ -9,4 +9,9 @@ public class PlayerPreparationUi : MonoBehaviour
     {
         joinedImage.gameObject.SetActive(true);
     }
+
+    public void OnPlayerLeft()
+    {
+        joinedImage.gameObject.SetActive(false);
+    }
 }

@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 66154425}
   - component: {fileID: 66154424}
   - component: {fileID: 66154426}
+  - component: {fileID: 66154427}
   m_Layer: 5
   m_Name: Tip
   m_TagString: Untagged
@@ -274,7 +275,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66154424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +414,25 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 1
   m_LayoutPriority: 1
+--- !u!95 &66154427
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66154422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd7a8fc4c169a0d4aa7089123ba9ac0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &198210739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1311,7 @@ PrefabInstance:
     - target: {fileID: 6952116648207831574, guid: b5f7fe5f8228a6b4c97755c4f60fea64,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6952116648207831574, guid: b5f7fe5f8228a6b4c97755c4f60fea64,
         type: 3}
@@ -1498,7 +1518,7 @@ PrefabInstance:
     - target: {fileID: 6952116648207831574, guid: b5f7fe5f8228a6b4c97755c4f60fea64,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6952116648207831574, guid: b5f7fe5f8228a6b4c97755c4f60fea64,
         type: 3}

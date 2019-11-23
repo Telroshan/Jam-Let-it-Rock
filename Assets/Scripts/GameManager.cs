@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +19,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player 1 plays " + move1 + " | Player 2 plays " + move2);
 
         // TODO : win condition check
-        // TODO : increment score
+        if (move1 == move2)
+        {
+            Debug.Log("Draw");
+        }
+        else if (move1 == Move.Paper && move2 == Move.Rock ||
+                 move1 == Move.Rock && move2 == Move.Scissors ||
+                 move1 == Move.Scissors && move2 == Move.Paper)
+        {
+            ++player1.score;
+        }
+        else
+        {
+            ++player2.score;
+        }
 
         if (Mathf.Abs(player1.score - player2.score) >= 2)
         {
@@ -35,7 +47,7 @@ public class GameManager : MonoBehaviour
 
             return;
         }
-        
+
         countDown.Restart();
     }
 }

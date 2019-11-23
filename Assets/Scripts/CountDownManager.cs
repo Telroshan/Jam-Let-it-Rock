@@ -18,8 +18,6 @@ public class CountDownManager : MonoBehaviour
 
     private float _remainingTime;
 
-    private bool _countdownInProgress = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,30 +28,27 @@ public class CountDownManager : MonoBehaviour
     {
         TextMeshProUgui.text = StartTimeBase.ToString("0.00");
         _remainingTime = StartTimeBase;
-        _countdownInProgress = true;
     }
 
     public void Restart()
     {
-        _remainingTime = 0f;
+        _remainingTime = StartTimeBase;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_countdownInProgress)
+        if (_remainingTime <= 0f) return;
+
+        _remainingTime -= Time.deltaTime;
+        if (_remainingTime <= 0)
         {
-            _remainingTime -= Time.deltaTime;
-            if (_remainingTime <= 0)
-            {
-                _remainingTime = 0;
-                _countdownInProgress = false;
-                OnTimesUp?.Invoke();
-            }
-
-            LoadingBar.fillAmount = Mathf.Clamp01(_remainingTime / StartTimeBase);
-
-            TextMeshProUgui.text = _remainingTime.ToString("0.00");
+            _remainingTime = 0;
+            OnTimesUp?.Invoke();
         }
+
+        LoadingBar.fillAmount = Mathf.Clamp01(_remainingTime / StartTimeBase);
+
+        TextMeshProUgui.text = _remainingTime.ToString("0.00");
     }
 }

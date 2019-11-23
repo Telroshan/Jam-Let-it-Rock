@@ -47,7 +47,9 @@ public class CountDownManager : MonoBehaviour
             OnTimesUp?.Invoke();
         }
 
-        LoadingBar.fillAmount = Mathf.Clamp01(_remainingTime / StartTimeBase);
+        var loadingBarRectTransform = LoadingBar.transform as RectTransform;
+        loadingBarRectTransform.sizeDelta = new Vector2(900 - 900 * (1 - Mathf.Clamp01(_remainingTime / StartTimeBase)), loadingBarRectTransform.sizeDelta.y);
+//        LoadingBar.fillAmount = Mathf.Clamp01(_remainingTime / StartTimeBase);
 
         TextMeshProUgui.text = _remainingTime.ToString("0.00");
     }

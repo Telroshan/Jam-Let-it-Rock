@@ -1,10 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
     private Move _selectedMove = Move.None;
-    public int score = 0;
+    public int score;
+
+    public int playerId;
+
+    private PlayerController _otherPlayer;
+    private PlayerInput _playerInput;
+    private bool _actionMapGameSwitch;
+
+    public Action onJoined;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        _playerInput = GetComponent<PlayerInput>();
+        _otherPlayer = FindObjectsOfType<PlayerController>().First(x => x != this);
+    }
 
     public Move GetMove()
     {
@@ -15,6 +34,13 @@ public class PlayerController : MonoBehaviour
     public void BeginTurn()
     {
         _selectedMove = Move.None;
+        Debug.Log("Begin turn");
+        if (!_actionMapGameSwitch)
+        {
+            Debug.Log("Switched to game map");
+            _playerInput.SwitchCurrentActionMap("Game");
+            _actionMapGameSwitch = true;
+        }
     }
 
     public void Rock(InputAction.CallbackContext callbackContext)
@@ -36,5 +62,26 @@ public class PlayerController : MonoBehaviour
         if (!callbackContext.performed) return;
         Debug.Log("SCISSORS");
         _selectedMove = Move.Scissors;
+    }
+
+    public void Join(InputAction.CallbackContext callbackContext)
+    {
+        if (!callbackContext.performed) return;
+        if (playerId > 0) return;
+        Debug.Log("JOIN");
+        playerId = _otherPlayer.playerId == 2 || _otherPlayer.playerId == 0 ? 1 : 2;
+        onJoined?.Invoke();
+    }
+
+    public void StartGame(InputAction.CallbackContext callbackContext)
+    {
+        if (!callbackContext.performed) return;
+        if (playerId == 0 || _otherPlayer.playerId == 0)
+        {
+            Debug.LogWarning("Not all players are ready !");
+            return;
+        }
+        Debug.Log("Start game");
+        SceneManager.LoadScene("Game");
     }
 }

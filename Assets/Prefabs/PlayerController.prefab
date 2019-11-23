@@ -100,9 +100,39 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e591a7f8-593e-4f09-a5c2-8fdbd72e941b
     m_ActionName: Game/Scissors[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7621689401298879286}
+        m_MethodName: Join
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d47a0e22-8e78-45ab-8d90-9d9f213d0f50
+    m_ActionName: Menu/Join[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7621689401298879286}
+        m_MethodName: StartGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 12290d44-0885-4eab-8e98-36554cdb588c
+    m_ActionName: Menu/Start[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Game
+  m_DefaultActionMap: Menu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &7621689401298879286
@@ -117,3 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4c7af85d5ad9c479f706790186cbd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+  playerId: 0
+  otherPlayer: {fileID: 0}

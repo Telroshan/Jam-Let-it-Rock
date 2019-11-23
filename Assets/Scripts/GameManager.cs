@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         countDown.OnTimesUp += EndTurn;
+        player1 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 1);
+        player2 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 2);
+        player1.BeginTurn();
+        player2.BeginTurn();
     }
 
     private void EndTurn()

@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scorePlayer1;
     [SerializeField] private TextMeshProUGUI scorePlayer2;
 
-    [SerializeField] GameObject MinigameSmashUI;
+    [SerializeField] private SmashMinigame _minigameSmashUi;
 
     public Action OnRoundEnd;
 
@@ -65,13 +65,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartNewRound());
     }
 
-    private void StartMinigameSmash()
-    {
-        player1.gameMode = PlayerController.GameMode.SmashMinigame;
-        player2.gameMode = PlayerController.GameMode.SmashMinigame;
-        MinigameSmashUI.SetActive(true);
-    }
-
     private void UpdateScore()
     {
         scorePlayer1.text = player1.score.ToString();
@@ -84,6 +77,29 @@ public class GameManager : MonoBehaviour
         countDown.Restart();
         player1.BeginTurn();
         player2.BeginTurn();
+    }
+
+    private void StartMinigameSmash()
+    {
+        player1.gameMode = PlayerController.GameMode.SmashMinigame;
+        player2.gameMode = PlayerController.GameMode.SmashMinigame;
+        _minigameSmashUi.StartMinigame();
+    }
+
+    public void OnMinigameSmashEnd(bool player1Won)
+    {
+        if (player1Won && player1.score >= player2.score + 2 ||
+            !player1Won && player2.score >= player1.score + 2)
+        {
+            EndGame();
+        }
+        else
+        {
+            if (player1.score < player2.score) ++player1.score;
+            else if (player2.score < player1.score) ++player2.score;
+            UpdateScore();
+            StartCoroutine(StartNewRound());
+        }
     }
 
     private void EndGame()

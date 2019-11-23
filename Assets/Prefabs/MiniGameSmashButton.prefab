@@ -124,7 +124,8 @@ MonoBehaviour:
   ProgressBarBackground: {fileID: 8248436732482358264}
   Player1ParticleSystem: {fileID: 357090664}
   Player2ParticleSystem: {fileID: 2555503776245037795}
-  GapNeededToWinInInputs: 50
+  gameManager: {fileID: 0}
+  GapNeededToWinInInputs: 10
 --- !u!1 &1542647853744671301
 GameObject:
   m_ObjectHideFlags: 0

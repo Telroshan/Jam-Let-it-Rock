@@ -51,9 +51,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Switched to game map");
             _playerInput.SwitchCurrentActionMap("Game");
-            gameMode = GameMode.InGame;
             _playerInput.uiInputModule = null;
         }
+
+        gameMode = GameMode.InGame;
     }
 
     public void Rock(InputAction.CallbackContext callbackContext)

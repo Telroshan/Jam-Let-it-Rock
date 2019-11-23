@@ -111,6 +111,44 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""b150f7f4-c96d-4a53-8020-f53f5c6656d7"",
+            ""actions"": [
+                {
+                    ""name"": ""Join"",
+                    ""type"": ""Button"",
+                    ""id"": ""d47a0e22-8e78-45ab-8d90-9d9f213d0f50"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""89abe4fc-2407-4f0f-97a1-cc2c7011d5ef"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcb4e212-35e1-4add-9f66-657f08385017"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -148,6 +186,9 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Game_Rock = m_Game.FindAction("Rock", throwIfNotFound: true);
         m_Game_Paper = m_Game.FindAction("Paper", throwIfNotFound: true);
         m_Game_Scissors = m_Game.FindAction("Scissors", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Join = m_Menu.FindAction("Join", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -242,6 +283,39 @@ public class @InputActions : IInputActionCollection, IDisposable
         }
     }
     public GameActions @Game => new GameActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_Join;
+    public struct MenuActions
+    {
+        private @InputActions m_Wrapper;
+        public MenuActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Join => m_Wrapper.m_Menu_Join;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @Join.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
+                @Join.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
+                @Join.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Join.started += instance.OnJoin;
+                @Join.performed += instance.OnJoin;
+                @Join.canceled += instance.OnJoin;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -265,5 +339,9 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnRock(InputAction.CallbackContext context);
         void OnPaper(InputAction.CallbackContext context);
         void OnScissors(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnJoin(InputAction.CallbackContext context);
     }
 }

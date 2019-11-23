@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerController player1;
     [SerializeField] private PlayerController player2;
     [SerializeField] private CountDownManager countDown;
+
+    [SerializeField] private float roundRestartDelay = 2f;
 
     private void Awake()
     {
@@ -47,11 +50,12 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        NewRound();
+        StartCoroutine(StartNewRound());
     }
 
-    private void NewRound()
+    private IEnumerator StartNewRound()
     {
+        yield return new WaitForSeconds(roundRestartDelay);
         countDown.Restart();
         player1.BeginTurn();
         player2.BeginTurn();

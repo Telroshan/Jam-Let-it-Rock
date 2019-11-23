@@ -392,6 +392,8 @@ MonoBehaviour:
   countDown: {fileID: 1987611463}
   roundRestartDelay: 2
   endgameUi: {fileID: 9116600192023399362}
+  scorePlayer1: {fileID: 1987611465}
+  scorePlayer2: {fileID: 1987611464}
 --- !u!4 &479446679
 Transform:
   m_ObjectHideFlags: 0
@@ -1053,6 +1055,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bbca5744035da54480b426095264a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1987611464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 637655588, guid: 60ef3d0e15e15e6429a6412477f4992d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1987611462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1987611465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1648029744, guid: 60ef3d0e15e15e6429a6412477f4992d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1987611462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9116600192023399360

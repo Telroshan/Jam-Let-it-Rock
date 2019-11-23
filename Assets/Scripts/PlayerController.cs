@@ -3,6 +3,7 @@ using System.Linq;
 using Menu;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Switched to game map");
             _playerInput.SwitchCurrentActionMap("Game");
             _inGame = true;
+            _playerInput.uiInputModule = null;
         }
     }
 
@@ -75,11 +77,14 @@ public class PlayerController : MonoBehaviour
         playerId = !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
         if (playerId == 1 && !_playerInput.uiInputModule)
         {
-            _playerInput.uiInputModule = _otherPlayer._playerInput.uiInputModule;
+            _playerInput.uiInputModule = _otherPlayer._playerInput.uiInputModule
+                ? _otherPlayer._playerInput.uiInputModule
+                : FindObjectOfType<InputSystemUIInputModule>();
             _otherPlayer._playerInput.uiInputModule = null;
             _playerInput.uiInputModule.actionsAsset = _playerInput.actions;
             _playerInput.uiInputModule.UpdateModule();
         }
+
         onJoined?.Invoke(this);
     }
 

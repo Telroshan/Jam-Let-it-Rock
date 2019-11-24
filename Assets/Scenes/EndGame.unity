@@ -832,6 +832,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1390100723804866792, guid: f87a1bde42102f74090bd6180eacee77,
+        type: 3}
+      propertyPath: player1VictoryScreen
+      value: 
+      objectReference: {fileID: 1387639481}
+    - target: {fileID: 1390100723804866792, guid: f87a1bde42102f74090bd6180eacee77,
+        type: 3}
+      propertyPath: player2VictoryScreen
+      value: 
+      objectReference: {fileID: 808414908}
     - target: {fileID: 7912273333456676701, guid: f87a1bde42102f74090bd6180eacee77,
         type: 3}
       propertyPath: m_IsActive

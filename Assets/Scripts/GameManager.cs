@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -29,10 +30,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource elevatorMusic;
     [SerializeField] private AudioSource hardcoreMusic;
 
-    public Action OnRoundEnd;
+    [SerializeField] private PlayableDirector rockVsScissorsTimeline;
+    [SerializeField] private PlayableDirector paperVsRockTimeline;
 
     private void Start()
     {
+        rockVsScissorsTimeline.stopped += OnCustsceneEnd;
+        paperVsRockTimeline.stopped += OnCustsceneEnd;
+
         countDown.OnTimesUp += EndTurn;
         _player1 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 1);
         _player2 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 2);
@@ -81,10 +86,14 @@ public class GameManager : MonoBehaviour
                  move1 == Move.Scissors && move2 == Move.Paper)
         {
             ++_player1.score;
+            rockVsScissorsTimeline.transform.localScale = new Vector3(-1f, 1f, 1f);
+            paperVsRockTimeline.transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else
         {
             ++_player2.score;
+            rockVsScissorsTimeline.transform.localScale = Vector3.one;
+            paperVsRockTimeline.transform.localScale = Vector3.one;
         }
 
         UpdateScore();
@@ -93,7 +102,7 @@ public class GameManager : MonoBehaviour
         {
             elevatorMusic.Stop();
             hardcoreMusic.Play();
-            int nextGame = new System.Random().Next(0,2);
+            int nextGame = new System.Random().Next(0, 2);
             switch (nextGame)
             {
                 case 0:
@@ -103,12 +112,32 @@ public class GameManager : MonoBehaviour
                     StartMinigameDontPress();
                     break;
             }
+
 //            StartMinigameSmash();
 //            EndGame();
             return;
         }
 
-        OnRoundEnd?.Invoke();
+        _player1.SetGameMode(PlayerController.GameMode.Cutscene);
+        _player2.SetGameMode(PlayerController.GameMode.Cutscene);
+        if (move1 == Move.Rock && move2 == Move.Scissors ||
+            move2 == Move.Rock && move1 == Move.Scissors)
+        {
+            rockVsScissorsTimeline.Play();
+        }
+        else if (move1 == Move.Paper && move2 == Move.Rock ||
+                 move2 == Move.Paper && move1 == Move.Rock)
+        {
+            paperVsRockTimeline.Play();
+        }
+        else
+        {
+            StartCoroutine(StartNewRound());
+        }
+    }
+
+    private void OnCustsceneEnd(PlayableDirector obj)
+    {
         StartCoroutine(StartNewRound());
     }
 
@@ -137,7 +166,7 @@ public class GameManager : MonoBehaviour
         _player2.SetGameMode(PlayerController.GameMode.SmashMinigame);
         _minigameSmashUi.StartMinigame();
     }
-    
+
     private void StartMinigameDontPress()
     {
         _player1.SetGameMode(PlayerController.GameMode.DontPressMinigame);

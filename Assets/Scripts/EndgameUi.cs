@@ -1,13 +1,22 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EndgameUi : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI winText;
+    [SerializeField] private Button restartButton;
 
-    public void Init(string winner)
+    private void Start()
     {
-        winText.text = winner + " wins";
-        gameObject.SetActive(true);
+        winText.text = WinnerStatic.WinnerText + " wins";
+        restartButton.Select();
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -166,13 +167,13 @@ public class GameManager : MonoBehaviour
     {
         if (_player1.score > _player2.score)
         {
-            Debug.Log("Player 1 wins");
-            endgameUi.Init("Player 1");
+            WinnerStatic.WinnerText = "Player 1";
         }
         else
         {
-            Debug.Log("Player 2 wins");
-            endgameUi.Init("Player 2");
+            WinnerStatic.WinnerText = "Player 2";
         }
+
+        SceneManager.LoadScene("EndGame");
     }
 }

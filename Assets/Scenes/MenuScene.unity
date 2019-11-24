@@ -1196,6 +1196,36 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 1349305511}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: idleSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fe3e30b04f2e03f48aa327a171fd4fc3,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: paperSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dd2baf950c0e5f944b255baa5e90306c,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: rockSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3910c648f5e8b334cb7bb35201a10de9,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: preparedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 32c2017fdcdba424dade156728789daf,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: scissorsSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cfc5d27cd79f9e14bb6e75bbcb66f56f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47fe1f13e744644dab5ddac4ea3e49e, type: 3}
 --- !u!114 &512085456 stripped
@@ -2229,6 +2259,36 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 512085456}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: idleSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa786821d58bb0445bc4d56acd188b63,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: scissorsSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 049f59b627a36964185a009d6dd498a7,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: paperSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d0e63d60f9563c445b04039c8ae9a7f0,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: rockSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 442c513996a71474e9306bec7ffeb382,
+        type: 3}
+    - target: {fileID: 7621689401298879286, guid: e47fe1f13e744644dab5ddac4ea3e49e,
+        type: 3}
+      propertyPath: preparedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a94b98f1346cfc9448f42d589acbac42,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47fe1f13e744644dab5ddac4ea3e49e, type: 3}
 --- !u!114 &1349305511 stripped

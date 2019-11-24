@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public SmashMinigame SmashMinigame { get; set; }
 
-    public Animator avatar { get; set; }
+    public SpriteRenderer avatar { get; set; }
 
     public enum GameMode
     {
@@ -41,6 +41,12 @@ public class PlayerController : MonoBehaviour
     private static readonly int PreparedAnimTrigger = Animator.StringToHash("Prepared");
     private static readonly int ResetAnimTrigger = Animator.StringToHash("Reset");
     private static readonly int PlayAnimTrigger = Animator.StringToHash("Play");
+
+    [SerializeField] private Sprite idleSprite;
+    [SerializeField] private Sprite preparedSprite;
+    [SerializeField] private Sprite rockSprite;
+    [SerializeField] private Sprite paperSprite;
+    [SerializeField] private Sprite scissorsSprite;
 
     private void Awake()
     {
@@ -64,17 +70,17 @@ public class PlayerController : MonoBehaviour
     public Move GetMove()
     {
         if (_selectedMove != Move.None) return _selectedMove;
-        return (Move) Random.Range((int) Move.Rock, (int) Move.Scissors + 1);
+        SetMove((Move) Random.Range((int) Move.Rock, (int) Move.Scissors + 1));
+        return _selectedMove;
     }
 
     private void SetMove(Move move)
     {
         if (avatar)
         {
-            avatar.SetInteger(MoveAnimInt, (int) move);
             if (_gameMode == GameMode.InGame && _selectedMove == Move.None)
             {
-                avatar.SetTrigger(PreparedAnimTrigger);
+                avatar.sprite = preparedSprite;
             }
         }
 
@@ -90,7 +96,7 @@ public class PlayerController : MonoBehaviour
         SetGameMode(GameMode.InGame);
         if (avatar)
         {
-            avatar.SetTrigger(ResetAnimTrigger);
+            avatar.sprite = idleSprite;
         }
     }
 
@@ -98,7 +104,18 @@ public class PlayerController : MonoBehaviour
     {
         if (avatar)
         {
-            avatar.SetTrigger(PlayAnimTrigger);
+            switch (_selectedMove)
+            {
+                case Move.Paper:
+                    avatar.sprite = paperSprite;
+                    break;
+                case Move.Rock:
+                    avatar.sprite = rockSprite;
+                    break;
+                case Move.Scissors:
+                    avatar.sprite = scissorsSprite;
+                    break;
+            }
         }
     }
 

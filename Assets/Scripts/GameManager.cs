@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private IngameUi ingameUi;
 
-    [SerializeField] private Animator larren;
-    [SerializeField] private Animator tynha;
-   
+    [SerializeField] private SpriteRenderer larren;
+    [SerializeField] private SpriteRenderer tynha;
+
     [SerializeField] private AudioSource elevatorMusic;
     [SerializeField] private AudioSource hardcoreMusic;
 
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
     public void OnMinigameSmashEnd(bool player1Won)
     {
         hardcoreMusic.Stop();
-        elevatorMusic.Play();        
+        elevatorMusic.Play();
         if (player1Won && _player1.score >= _player2.score + 2 ||
             !player1Won && _player2.score >= _player1.score + 2)
         {

@@ -179,6 +179,7 @@ public class PlayerController : MonoBehaviour
     public void Prepared(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
+        if (_gameMode != GameMode.Preparation) return;
         IsPrepared = true;
         Debug.Log("READY");
         onPrepared?.Invoke(this);

@@ -115,16 +115,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprites:
+  - {fileID: 21300000, guid: ff63498ba307e1c4a877951f03199634, type: 3}
   - {fileID: 21300000, guid: 6b2124fd7b3b96c418354c24e7e4ef10, type: 3}
   - {fileID: 21300000, guid: 93e659d432ec8fe468907fa8e2250bd4, type: 3}
-  - {fileID: 21300000, guid: 8913cf472e779bf40b3e82755b656964, type: 3}
   Player1Input: {fileID: 1542647853744671303}
   Player2Input: {fileID: 1542647853957138833}
   Cursor: {fileID: 1542647854733365382}
   ProgressBarBackground: {fileID: 8248436732482358264}
   Player1ParticleSystem: {fileID: 357090664}
   Player2ParticleSystem: {fileID: 2555503776245037795}
-  gameManager: {fileID: 0}
   GapNeededToWinInInputs: 10
 --- !u!1 &1542647853744671301
 GameObject:

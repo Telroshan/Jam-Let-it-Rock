@@ -41,6 +41,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Prepared"",
+                    ""type"": ""Button"",
+                    ""id"": ""539edecd-0942-4ef8-9a1a-eede03856bdf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -107,6 +115,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Scissors"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27ab7c4d-bf03-45ec-982b-6fa921cd1712"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Prepared"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a54e945a-b0e9-4a79-90d8-a04e70532ba5"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Prepared"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -290,6 +320,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Game_Rock = m_Game.FindAction("Rock", throwIfNotFound: true);
         m_Game_Paper = m_Game.FindAction("Paper", throwIfNotFound: true);
         m_Game_Scissors = m_Game.FindAction("Scissors", throwIfNotFound: true);
+        m_Game_Prepared = m_Game.FindAction("Prepared", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Join = m_Menu.FindAction("Join", throwIfNotFound: true);
@@ -347,6 +378,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Rock;
     private readonly InputAction m_Game_Paper;
     private readonly InputAction m_Game_Scissors;
+    private readonly InputAction m_Game_Prepared;
     public struct GameActions
     {
         private @InputActions m_Wrapper;
@@ -354,6 +386,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Rock => m_Wrapper.m_Game_Rock;
         public InputAction @Paper => m_Wrapper.m_Game_Paper;
         public InputAction @Scissors => m_Wrapper.m_Game_Scissors;
+        public InputAction @Prepared => m_Wrapper.m_Game_Prepared;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -372,6 +405,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Scissors.started -= m_Wrapper.m_GameActionsCallbackInterface.OnScissors;
                 @Scissors.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnScissors;
                 @Scissors.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnScissors;
+                @Prepared.started -= m_Wrapper.m_GameActionsCallbackInterface.OnPrepared;
+                @Prepared.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnPrepared;
+                @Prepared.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnPrepared;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -385,6 +421,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Scissors.started += instance.OnScissors;
                 @Scissors.performed += instance.OnScissors;
                 @Scissors.canceled += instance.OnScissors;
+                @Prepared.started += instance.OnPrepared;
+                @Prepared.performed += instance.OnPrepared;
+                @Prepared.canceled += instance.OnPrepared;
             }
         }
     }
@@ -461,6 +500,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnRock(InputAction.CallbackContext context);
         void OnPaper(InputAction.CallbackContext context);
         void OnScissors(InputAction.CallbackContext context);
+        void OnPrepared(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

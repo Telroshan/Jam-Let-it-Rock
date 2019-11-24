@@ -15,19 +15,23 @@ public class PlayerController : MonoBehaviour
 
     private PlayerController _otherPlayer;
     private PlayerInput _playerInput;
-    public GameMode gameMode = GameMode.Menu;
+    private GameMode _gameMode = GameMode.Menu;
 
     public SmashMinigame SmashMinigame { get; set; }
 
     public enum GameMode
     {
         Menu,
+        Preparation,
         InGame,
         SmashMinigame,
         DontPressMinigame,
     }
 
+    public bool IsPrepared { get; private set; }
+
     public Action<PlayerController> onJoined;
+    public Action<PlayerController> onPrepared;
     public Action<PlayerController> onDisconnected;
 
     private void Awake()
@@ -35,6 +39,18 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         _playerInput = GetComponent<PlayerInput>();
         _otherPlayer = FindObjectsOfType<PlayerController>().First(x => x != this);
+    }
+
+    public void SetGameMode(GameMode mode)
+    {
+        if (_gameMode == GameMode.Menu && mode == GameMode.Preparation)
+        {
+            Debug.Log("Switched to game map");
+            _playerInput.SwitchCurrentActionMap("Game");
+            _playerInput.uiInputModule = null;
+        }
+
+        _gameMode = mode;
     }
 
     public Move GetMove()
@@ -47,20 +63,13 @@ public class PlayerController : MonoBehaviour
     {
         _selectedMove = Move.None;
         Debug.Log("Begin turn");
-        if (gameMode == GameMode.Menu)
-        {
-            Debug.Log("Switched to game map");
-            _playerInput.SwitchCurrentActionMap("Game");
-            _playerInput.uiInputModule = null;
-        }
-
-        gameMode = GameMode.InGame;
+        SetGameMode(GameMode.InGame);
     }
 
     public void Rock(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        switch (gameMode)
+        switch (_gameMode)
         {
             case GameMode.InGame:
                 Debug.Log("ROCK");
@@ -75,7 +84,7 @@ public class PlayerController : MonoBehaviour
     public void Paper(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        switch (gameMode)
+        switch (_gameMode)
         {
             case GameMode.InGame:
                 Debug.Log("PAPER");
@@ -90,7 +99,7 @@ public class PlayerController : MonoBehaviour
     public void Scissors(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        switch (gameMode)
+        switch (_gameMode)
         {
             case GameMode.InGame:
                 Debug.Log("SCISSORS");
@@ -105,26 +114,42 @@ public class PlayerController : MonoBehaviour
     public void Join(InputAction.CallbackContext callbackContext)
     {
         if (!callbackContext.performed) return;
-        if (Ready) return;
-        Debug.Log("JOIN");
-        playerId = !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
-        if (playerId == 1 && !_playerInput.uiInputModule)
+        switch (_gameMode)
         {
-            _playerInput.uiInputModule = _otherPlayer._playerInput.uiInputModule
-                ? _otherPlayer._playerInput.uiInputModule
-                : FindObjectOfType<InputSystemUIInputModule>();
-            _otherPlayer._playerInput.uiInputModule = null;
-            _playerInput.uiInputModule.actionsAsset = _playerInput.actions;
-            _playerInput.uiInputModule.UpdateModule();
-        }
+            case GameMode.Menu:
+            {
+                if (Ready) return;
+                Debug.Log("JOIN");
+                playerId = !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
+                if (playerId == 1 && !_playerInput.uiInputModule)
+                {
+                    _playerInput.uiInputModule = _otherPlayer._playerInput.uiInputModule
+                        ? _otherPlayer._playerInput.uiInputModule
+                        : FindObjectOfType<InputSystemUIInputModule>();
+                    _otherPlayer._playerInput.uiInputModule = null;
+                    _playerInput.uiInputModule.actionsAsset = _playerInput.actions;
+                    _playerInput.uiInputModule.UpdateModule();
+                }
 
-        onJoined?.Invoke(this);
+                onJoined?.Invoke(this);
+                break;
+            }
+        }
     }
+
+    public void Prepared(InputAction.CallbackContext callbackContext)
+    {
+        if (!callbackContext.performed) return;
+        IsPrepared = true;
+        Debug.Log("READY");
+        onPrepared?.Invoke(this);
+    }
+
 
     public void Disconnected()
     {
         onDisconnected?.Invoke(this);
-        if (gameMode == GameMode.Menu)
+        if (_gameMode == GameMode.Menu)
         {
             playerId = 0;
         }

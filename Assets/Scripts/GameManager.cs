@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private SmashMinigame _minigameSmashUi;
 
+    [SerializeField] private IngameUi ingameUi;
+
     public Action OnRoundEnd;
 
     private void Start()
@@ -26,8 +28,30 @@ public class GameManager : MonoBehaviour
         countDown.OnTimesUp += EndTurn;
         player1 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 1);
         player2 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 2);
-        player1.BeginTurn();
-        player2.BeginTurn();
+
+        player1.SetGameMode(PlayerController.GameMode.Preparation);
+        player2.SetGameMode(PlayerController.GameMode.Preparation);
+
+        player1.onPrepared += OnPlayerPrepared;
+        player2.onPrepared += OnPlayerPrepared;
+    }
+
+    private void OnPlayerPrepared(PlayerController obj)
+    {
+        if (player1.IsPrepared && player2.IsPrepared)
+        {
+            ingameUi.StartGame(() =>
+            {
+                player1.BeginTurn();
+                player2.BeginTurn();
+            });
+        }
+    }
+
+    private void OnDestroy()
+    {
+        player1.onJoined -= OnPlayerPrepared;
+        player2.onJoined -= OnPlayerPrepared;
     }
 
     private void EndTurn()
@@ -81,8 +105,8 @@ public class GameManager : MonoBehaviour
 
     private void StartMinigameSmash()
     {
-        player1.gameMode = PlayerController.GameMode.SmashMinigame;
-        player2.gameMode = PlayerController.GameMode.SmashMinigame;
+        player1.SetGameMode(PlayerController.GameMode.SmashMinigame);
+        player2.SetGameMode(PlayerController.GameMode.SmashMinigame);
         _minigameSmashUi.StartMinigame();
     }
 

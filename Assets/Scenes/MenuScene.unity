@@ -653,21 +653,6 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 1349305511}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: c0cb6af1-d8f6-4ec5-ac51-33f605ee6e95
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: Menu/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows/leftStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47fe1f13e744644dab5ddac4ea3e49e, type: 3}
 --- !u!114 &512085456 stripped
@@ -1483,21 +1468,6 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 512085456}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
-      value: c0cb6af1-d8f6-4ec5-ac51-33f605ee6e95
-      objectReference: {fileID: 0}
-    - target: {fileID: 7621689401298879284, guid: e47fe1f13e744644dab5ddac4ea3e49e,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
-      value: Menu/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows/leftStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47fe1f13e744644dab5ddac4ea3e49e, type: 3}
 --- !u!114 &1349305511 stripped

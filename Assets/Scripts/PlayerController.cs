@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private GameMode _gameMode = GameMode.Menu;
 
     public SmashMinigame SmashMinigame { get; set; }
+    public DontPressMinigame DontPressMinigame { get; set; }
 
     public PlayerAvatar avatar { get; set; }
 
@@ -121,6 +122,9 @@ public class PlayerController : MonoBehaviour
             case GameMode.SmashMinigame:
                 SmashMinigame.getPressedInput(playerId, Move.Rock);
                 break;
+            case GameMode.DontPressMinigame:
+                DontPressMinigame.getPressedInput(playerId, Move.Rock);
+                break;
         }
     }
 
@@ -137,6 +141,9 @@ public class PlayerController : MonoBehaviour
             case GameMode.SmashMinigame:
                 SmashMinigame.getPressedInput(playerId, Move.Paper);
                 break;
+            case GameMode.DontPressMinigame:
+                DontPressMinigame.getPressedInput(playerId, Move.Paper);
+                break;
         }
     }
 
@@ -152,6 +159,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case GameMode.SmashMinigame:
                 SmashMinigame.getPressedInput(playerId, Move.Scissors);
+                break;
+            case GameMode.DontPressMinigame:
+                DontPressMinigame.getPressedInput(playerId, Move.Scissors);
                 break;
         }
     }

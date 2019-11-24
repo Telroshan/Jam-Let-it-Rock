@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scorePlayer2;
 
     [SerializeField] private SmashMinigame _minigameSmashUi;
+    [SerializeField] private DontPressMinigame _minigameDontPressUi;
 
     [SerializeField] private IngameUi ingameUi;
 
@@ -91,7 +92,17 @@ public class GameManager : MonoBehaviour
         {
             elevatorMusic.Stop();
             hardcoreMusic.Play();
-            StartMinigameSmash();
+            int nextGame = new System.Random().Next(0,2);
+            switch (nextGame)
+            {
+                case 0:
+                    StartMinigameSmash();
+                    break;
+                case 1:
+                    StartMinigameDontPress();
+                    break;
+            }
+//            StartMinigameSmash();
 //            EndGame();
             return;
         }
@@ -125,8 +136,15 @@ public class GameManager : MonoBehaviour
         _player2.SetGameMode(PlayerController.GameMode.SmashMinigame);
         _minigameSmashUi.StartMinigame();
     }
+    
+    private void StartMinigameDontPress()
+    {
+        _player1.SetGameMode(PlayerController.GameMode.DontPressMinigame);
+        _player2.SetGameMode(PlayerController.GameMode.DontPressMinigame);
+        _minigameDontPressUi.StartMinigame();
+    }
 
-    public void OnMinigameSmashEnd(bool player1Won)
+    public void OnMinigameEnd(bool player1Won)
     {
         hardcoreMusic.Stop();
         elevatorMusic.Play();

@@ -54,7 +54,7 @@ public class SmashMinigame : MonoBehaviour
 
         if (Mathf.Abs(countOfButtons) >= GapNeededToWinInInputs)
         {
-            _gameManager.OnMinigameSmashEnd(countOfButtons > 0);
+            _gameManager.OnMinigameEnd(countOfButtons > 0);
             gameObject.SetActive(false);
         }
     }

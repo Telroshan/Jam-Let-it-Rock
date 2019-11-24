@@ -32,11 +32,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PlayableDirector rockVsScissorsTimeline;
     [SerializeField] private PlayableDirector paperVsRockTimeline;
+    [SerializeField] private PlayableDirector scissorsVsPaperTimeline;
 
     private void Start()
     {
         rockVsScissorsTimeline.stopped += OnCustsceneEnd;
         paperVsRockTimeline.stopped += OnCustsceneEnd;
+        scissorsVsPaperTimeline.stopped += OnCustsceneEnd;
 
         countDown.OnTimesUp += EndTurn;
         _player1 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 1);
@@ -88,12 +90,14 @@ public class GameManager : MonoBehaviour
             ++_player1.score;
             rockVsScissorsTimeline.transform.localScale = new Vector3(-1f, 1f, 1f);
             paperVsRockTimeline.transform.localScale = new Vector3(-1f, 1f, 1f);
+            scissorsVsPaperTimeline.transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else
         {
             ++_player2.score;
             rockVsScissorsTimeline.transform.localScale = Vector3.one;
             paperVsRockTimeline.transform.localScale = Vector3.one;
+            scissorsVsPaperTimeline.transform.localScale = Vector3.one;
         }
 
         UpdateScore();
@@ -129,6 +133,11 @@ public class GameManager : MonoBehaviour
                  move2 == Move.Paper && move1 == Move.Rock)
         {
             paperVsRockTimeline.Play();
+        }
+        else if (move1 == Move.Scissors && move2 == Move.Paper ||
+                 move2 == Move.Scissors && move1 == Move.Paper)
+        {
+            scissorsVsPaperTimeline.Play();
         }
         else
         {

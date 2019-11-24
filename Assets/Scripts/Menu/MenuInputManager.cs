@@ -1,7 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Menu
@@ -9,18 +10,16 @@ namespace Menu
     public class MenuInputManager : MonoBehaviour
     {
         [SerializeField] private PlayerStateUi[] playerPreparationUis;
-        private PlayerController[] _playerControllers;
+        private readonly List<PlayerController> _playerControllers = new List<PlayerController>();
         [SerializeField] private TextMeshProUGUI joinTip;
         [SerializeField] private Button playButton;
 
-        private void Awake()
+        public void OnPlayerInputJoined(PlayerInput playerInput)
         {
-            _playerControllers = FindObjectsOfType<PlayerController>();
-            foreach (PlayerController playerController in _playerControllers)
-            {
-                playerController.onJoined += OnPlayerJoined;
-                playerController.onDisconnected += OnPlayerLeft;
-            }
+            PlayerController playerController = playerInput.GetComponent<PlayerController>();
+            playerController.onJoined += OnPlayerJoined;
+            playerController.onDisconnected += OnPlayerLeft;
+            _playerControllers.Add(playerController);
         }
 
         private void OnDestroy()
@@ -34,8 +33,9 @@ namespace Menu
 
         private void OnPlayerJoined(PlayerController playerController)
         {
+            if (playerController.playerId == 0) return;
             playerPreparationUis[playerController.playerId - 1].OnPlayerJoined();
-            if (_playerControllers.All(x => x.playerId > 0))
+            if (_playerControllers.Count == 2 && _playerControllers.All(x => x.playerId > 0))
             {
                 joinTip.enabled = false;
                 playButton.interactable = true;
@@ -44,6 +44,7 @@ namespace Menu
 
         private void OnPlayerLeft(PlayerController playerController)
         {
+            if (playerController.playerId == 0) return;
             playerPreparationUis[playerController.playerId - 1].OnPlayerLeft();
             joinTip.enabled = true;
             playButton.interactable = false;

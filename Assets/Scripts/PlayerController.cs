@@ -43,7 +43,11 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         _playerInput = GetComponent<PlayerInput>();
-        _otherPlayer = FindObjectsOfType<PlayerController>().First(x => x != this);
+        _otherPlayer = FindObjectsOfType<PlayerController>().FirstOrDefault(x => x != this);
+        if (_otherPlayer)
+        {
+            _otherPlayer._otherPlayer = this;
+        }
     }
 
     public void SetGameMode(GameMode mode)
@@ -175,14 +179,17 @@ public class PlayerController : MonoBehaviour
             case GameMode.Menu:
             {
                 if (Ready) return;
-                Debug.Log("JOIN");
-                playerId = !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
+                playerId = !_otherPlayer || !_otherPlayer.Ready || _otherPlayer.playerId == 2 ? 1 : 2;
                 if (playerId == 1 && !_playerInput.uiInputModule)
                 {
-                    _playerInput.uiInputModule = _otherPlayer._playerInput.uiInputModule
+                    _playerInput.uiInputModule = _otherPlayer && _otherPlayer._playerInput.uiInputModule
                         ? _otherPlayer._playerInput.uiInputModule
                         : FindObjectOfType<InputSystemUIInputModule>();
-                    _otherPlayer._playerInput.uiInputModule = null;
+                    if (_otherPlayer)
+                    {
+                        _otherPlayer._playerInput.uiInputModule = null;
+                    }
+
                     _playerInput.uiInputModule.actionsAsset = _playerInput.actions;
                     _playerInput.uiInputModule.UpdateModule();
                 }

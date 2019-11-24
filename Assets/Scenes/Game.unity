@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 160501098}
   - component: {fileID: 160501100}
   m_Layer: 0
-  m_Name: Larren_face
+  m_Name: LarrenAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aad56eb3d858f4f47aed65050e8cf6d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.85, y: 15.44}
@@ -282,7 +282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &160501100
 Animator:
@@ -487,8 +487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e962e565353cf8648b5749c897a39430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   countDown: {fileID: 1987611463}
   roundRestartDelay: 2
   endgameUi: {fileID: 9116600192023399362}
@@ -496,6 +494,8 @@ MonoBehaviour:
   scorePlayer2: {fileID: 1987611464}
   _minigameSmashUi: {fileID: 875158259}
   ingameUi: {fileID: 1987611466}
+  larren: {fileID: 160501100}
+  tynha: {fileID: 1495263194}
 --- !u!4 &479446679
 Transform:
   m_ObjectHideFlags: 0
@@ -799,8 +799,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1495263193}
   - component: {fileID: 1495263192}
+  - component: {fileID: 1495263194}
   m_Layer: 0
-  m_Name: Tyhna_face
+  m_Name: TyhnaAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,8 +868,27 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1495263194
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495263191}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b306efe3307fec4fa351c8bb39aca26, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1987611462
 PrefabInstance:
   m_ObjectHideFlags: 0

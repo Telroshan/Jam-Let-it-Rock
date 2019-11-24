@@ -194,9 +194,19 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (_player1.score == 5 || _player2.score == 5)
+            {
+                EndGame();
+                return;
+            }
             if (_player1.score < _player2.score) ++_player1.score;
             else if (_player2.score < _player1.score) ++_player2.score;
             UpdateScore();
+            if (_player1.score == 5 || _player2.score == 5)
+            {
+                EndGame();
+                return;
+            }
             StartCoroutine(StartNewRound());
         }
     }

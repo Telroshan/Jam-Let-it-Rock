@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public SmashMinigame SmashMinigame { get; set; }
 
+    public Animator avatar { get; set; }
+
     public enum GameMode
     {
         Menu,
@@ -34,6 +36,11 @@ public class PlayerController : MonoBehaviour
     public Action<PlayerController> onPrepared;
     public Action<PlayerController> onDisconnected;
     public Action<PlayerController, Move> onMoveSelect;
+
+    private static readonly int MoveAnimInt = Animator.StringToHash("Move");
+    private static readonly int PreparedAnimTrigger = Animator.StringToHash("Prepared");
+    private static readonly int ResetAnimTrigger = Animator.StringToHash("Reset");
+    private static readonly int PlayAnimTrigger = Animator.StringToHash("Play");
 
     private void Awake()
     {
@@ -62,7 +69,17 @@ public class PlayerController : MonoBehaviour
 
     private void SetMove(Move move)
     {
+        if (avatar)
+        {
+            avatar.SetInteger(MoveAnimInt, (int) move);
+            if (_gameMode == GameMode.InGame && _selectedMove == Move.None)
+            {
+                avatar.SetTrigger(PreparedAnimTrigger);
+            }
+        }
+
         _selectedMove = move;
+
         onMoveSelect?.Invoke(this, _selectedMove);
     }
 
@@ -71,6 +88,18 @@ public class PlayerController : MonoBehaviour
         SetMove(Move.None);
         Debug.Log("Begin turn");
         SetGameMode(GameMode.InGame);
+        if (avatar)
+        {
+            avatar.SetTrigger(ResetAnimTrigger);
+        }
+    }
+
+    public void EndTurn()
+    {
+        if (avatar)
+        {
+            avatar.SetTrigger(PlayAnimTrigger);
+        }
     }
 
     public void Rock(InputAction.CallbackContext callbackContext)

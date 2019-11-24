@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerController player1;
-    [SerializeField] private PlayerController player2;
+    private PlayerController _player1;
+    private PlayerController _player2;
     [SerializeField] private CountDownManager countDown;
 
     [SerializeField] private float roundRestartDelay = 2f;
@@ -21,43 +21,48 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private IngameUi ingameUi;
 
+    [SerializeField] private Animator larren;
+    [SerializeField] private Animator tynha;
+
     public Action OnRoundEnd;
 
     private void Start()
     {
         countDown.OnTimesUp += EndTurn;
-        player1 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 1);
-        player2 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 2);
+        _player1 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 1);
+        _player2 = FindObjectsOfType<PlayerController>().First(x => x.playerId == 2);
 
-        player1.SetGameMode(PlayerController.GameMode.Preparation);
-        player2.SetGameMode(PlayerController.GameMode.Preparation);
+        _player1.SetGameMode(PlayerController.GameMode.Preparation);
+        _player2.SetGameMode(PlayerController.GameMode.Preparation);
 
-        player1.onPrepared += OnPlayerPrepared;
-        player2.onPrepared += OnPlayerPrepared;
+        _player1.avatar = larren;
+        _player2.avatar = tynha;
+
+        _player1.onPrepared += OnPlayerPrepared;
+        _player2.onPrepared += OnPlayerPrepared;
     }
 
     private void OnPlayerPrepared(PlayerController obj)
     {
-        if (player1.IsPrepared && player2.IsPrepared)
+        if (_player1.IsPrepared && _player2.IsPrepared)
         {
-            ingameUi.StartGame(() =>
-            {
-                player1.BeginTurn();
-                player2.BeginTurn();
-            });
+            ingameUi.StartGame(BeginRound);
         }
     }
 
     private void OnDestroy()
     {
-        player1.onJoined -= OnPlayerPrepared;
-        player2.onJoined -= OnPlayerPrepared;
+        _player1.onJoined -= OnPlayerPrepared;
+        _player2.onJoined -= OnPlayerPrepared;
     }
 
     private void EndTurn()
     {
-        Move move1 = player1.GetMove();
-        Move move2 = player2.GetMove();
+        Move move1 = _player1.GetMove();
+        Move move2 = _player2.GetMove();
+
+        _player1.EndTurn();
+        _player2.EndTurn();
 
         Debug.Log("Player 1 plays " + move1 + " | Player 2 plays " + move2);
 
@@ -69,16 +74,16 @@ public class GameManager : MonoBehaviour
                  move1 == Move.Rock && move2 == Move.Scissors ||
                  move1 == Move.Scissors && move2 == Move.Paper)
         {
-            ++player1.score;
+            ++_player1.score;
         }
         else
         {
-            ++player2.score;
+            ++_player2.score;
         }
 
         UpdateScore();
 
-        if (Mathf.Abs(player1.score - player2.score) >= 2)
+        if (Mathf.Abs(_player1.score - _player2.score) >= 2)
         {
             StartMinigameSmash();
 //            EndGame();
@@ -91,36 +96,41 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScore()
     {
-        scorePlayer1.text = player1.score.ToString();
-        scorePlayer2.text = player2.score.ToString();
+        scorePlayer1.text = _player1.score.ToString();
+        scorePlayer2.text = _player2.score.ToString();
     }
 
     private IEnumerator StartNewRound()
     {
         yield return new WaitForSeconds(roundRestartDelay);
+        BeginRound();
+    }
+
+    private void BeginRound()
+    {
         countDown.Restart();
-        player1.BeginTurn();
-        player2.BeginTurn();
+        _player1.BeginTurn();
+        _player2.BeginTurn();
     }
 
     private void StartMinigameSmash()
     {
-        player1.SetGameMode(PlayerController.GameMode.SmashMinigame);
-        player2.SetGameMode(PlayerController.GameMode.SmashMinigame);
+        _player1.SetGameMode(PlayerController.GameMode.SmashMinigame);
+        _player2.SetGameMode(PlayerController.GameMode.SmashMinigame);
         _minigameSmashUi.StartMinigame();
     }
 
     public void OnMinigameSmashEnd(bool player1Won)
     {
-        if (player1Won && player1.score >= player2.score + 2 ||
-            !player1Won && player2.score >= player1.score + 2)
+        if (player1Won && _player1.score >= _player2.score + 2 ||
+            !player1Won && _player2.score >= _player1.score + 2)
         {
             EndGame();
         }
         else
         {
-            if (player1.score < player2.score) ++player1.score;
-            else if (player2.score < player1.score) ++player2.score;
+            if (_player1.score < _player2.score) ++_player1.score;
+            else if (_player2.score < _player1.score) ++_player2.score;
             UpdateScore();
             StartCoroutine(StartNewRound());
         }
@@ -128,7 +138,7 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        if (player1.score > player2.score)
+        if (_player1.score > _player2.score)
         {
             Debug.Log("Player 1 wins");
             endgameUi.Init("Player 1");

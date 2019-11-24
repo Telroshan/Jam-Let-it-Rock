@@ -903,6 +903,7 @@ MonoBehaviour:
   tynha: {fileID: 1495263195}
   elevatorMusic: {fileID: 241211131}
   hardcoreMusic: {fileID: 1924693104}
+  rockVsScissorsTimeline: {fileID: 0}
 --- !u!4 &479446679
 Transform:
   m_ObjectHideFlags: 0
@@ -2589,7 +2590,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 2e9a2a73541ead74681d921ea06abf15, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0

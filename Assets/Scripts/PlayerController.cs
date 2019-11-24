@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
         InGame,
         SmashMinigame,
         DontPressMinigame,
+        Cutscene,
     }
 
     public bool IsPrepared { get; private set; }

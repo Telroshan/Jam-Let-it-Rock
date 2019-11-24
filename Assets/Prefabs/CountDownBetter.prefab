@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1595527361789815035}
   - component: {fileID: 1595527361789815013}
   m_Layer: 5
-  m_Name: CountDown
+  m_Name: CountDownBetter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbca5744035da54480b426095264a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartTimeBase: 6
+  StartTimeBase: 3
   TextMeshProUgui: {fileID: 1595527361789815013}
   LoadingBar: {fileID: 1595527363086483780}
   LoadingBarObject: {fileID: 1595527363086483782}

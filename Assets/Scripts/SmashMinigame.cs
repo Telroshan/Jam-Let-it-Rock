@@ -14,6 +14,9 @@ public class SmashMinigame : MonoBehaviour
     [SerializeField] private Image ProgressBarBackground;
     [SerializeField] private ParticleSystem Player1ParticleSystem;
     [SerializeField] private ParticleSystem Player2ParticleSystem;
+    [SerializeField] private AudioSource Player1Sound;
+    [SerializeField] private AudioSource Player2Sound;
+    
 
     private GameManager _gameManager;
 
@@ -43,12 +46,14 @@ public class SmashMinigame : MonoBehaviour
         {
             Player1ParticleSystem.GetComponent<Renderer>().material = Materials[Convert.ToInt32( move) - 1];
             SetCursor(countOfButtons + 1);
+            Player1Sound.Play();
             Player1ParticleSystem.Emit(1);
         }
         else
         {
             Player2ParticleSystem.GetComponent<Renderer>().material = Materials[Convert.ToInt32( move) - 1];
             SetCursor(countOfButtons - 1);
+            Player2Sound.Play();
             Player2ParticleSystem.Emit(1);
         }
 

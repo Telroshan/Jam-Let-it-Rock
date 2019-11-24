@@ -13,12 +13,14 @@ namespace Menu
         [SerializeField] private float inactiveScale = 0.2f;
         [SerializeField] private float transitionSpeed = 2f;
         [SerializeField] private Transform containerToScale;
+        [SerializeField] private AudioSource audioSourceDisconnect;
         
         private Color _disabledColor;
 
         private bool _active;
         
         private Image _image;
+        private AudioSource _audioSource;
 
         private float _timer = 1f;
 
@@ -27,6 +29,7 @@ namespace Menu
 
         private void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
             _image = GetComponent<Image>();
             _disabledColor = _image.color;
             _activeScale = new Vector3(activeScale, activeScale, activeScale);
@@ -48,6 +51,7 @@ namespace Menu
 
             _timer = 1f - _timer;
             _active = true;
+            _audioSource.Play();
         }
 
         public void OnPlayerLeft()
@@ -56,6 +60,7 @@ namespace Menu
 
             _timer = 1f - _timer;
             _active = false;
+            audioSourceDisconnect.Play();
         }
     }
 }

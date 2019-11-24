@@ -23,6 +23,8 @@ public class IngameUi : MonoBehaviour
     [SerializeField] private Animator player2Scissors;
     private static readonly int Pressed = Animator.StringToHash("Pressed");
 
+    [SerializeField] private GameObject readyButton;
+
     private void Awake()
     {
         _playerControllers = FindObjectsOfType<PlayerController>();
@@ -85,6 +87,7 @@ public class IngameUi : MonoBehaviour
         playerOneInputs.SetTrigger(Game);
         playerTwoInputs.SetTrigger(Game);
         preparationOverlay.SetTrigger(Game);
+        readyButton.SetActive(false);
         yield return new WaitForSeconds(1.5f);
         countDownManager.gameObject.SetActive(true);
         endAnimationCallback?.Invoke();

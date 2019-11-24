@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 160501099}
   - component: {fileID: 160501098}
   - component: {fileID: 160501100}
+  - component: {fileID: 160501101}
   m_Layer: 0
   m_Name: LarrenAvatar
   m_TagString: Untagged
@@ -303,6 +304,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &160501101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160501097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915889a1251eede4aba7a446b57e9613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleSprite: {fileID: 21300000, guid: fe3e30b04f2e03f48aa327a171fd4fc3, type: 3}
+  preparedSprite: {fileID: 21300000, guid: 32c2017fdcdba424dade156728789daf, type: 3}
+  rockSprite: {fileID: 21300000, guid: 3910c648f5e8b334cb7bb35201a10de9, type: 3}
+  paperSprite: {fileID: 21300000, guid: dd2baf950c0e5f944b255baa5e90306c, type: 3}
+  scissorsSprite: {fileID: 21300000, guid: cfc5d27cd79f9e14bb6e75bbcb66f56f, type: 3}
 --- !u!1 &235520618
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,8 +639,8 @@ MonoBehaviour:
   scorePlayer2: {fileID: 1987611464}
   _minigameSmashUi: {fileID: 875158259}
   ingameUi: {fileID: 1987611466}
-  larren: {fileID: 160501098}
-  tynha: {fileID: 1495263192}
+  larren: {fileID: 160501101}
+  tynha: {fileID: 1495263195}
   elevatorMusic: {fileID: 241211131}
   hardcoreMusic: {fileID: 1924693104}
 --- !u!4 &479446679
@@ -991,6 +1009,7 @@ GameObject:
   - component: {fileID: 1495263193}
   - component: {fileID: 1495263192}
   - component: {fileID: 1495263194}
+  - component: {fileID: 1495263195}
   m_Layer: 0
   m_Name: TyhnaAvatar
   m_TagString: Untagged
@@ -1080,6 +1099,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1495263195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495263191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915889a1251eede4aba7a446b57e9613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleSprite: {fileID: 21300000, guid: fa786821d58bb0445bc4d56acd188b63, type: 3}
+  preparedSprite: {fileID: 21300000, guid: a94b98f1346cfc9448f42d589acbac42, type: 3}
+  rockSprite: {fileID: 21300000, guid: 442c513996a71474e9306bec7ffeb382, type: 3}
+  paperSprite: {fileID: 21300000, guid: d0e63d60f9563c445b04039c8ae9a7f0, type: 3}
+  scissorsSprite: {fileID: 21300000, guid: 049f59b627a36964185a009d6dd498a7, type: 3}
 --- !u!1 &1590678243
 GameObject:
   m_ObjectHideFlags: 0

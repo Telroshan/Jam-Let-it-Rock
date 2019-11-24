@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public SmashMinigame SmashMinigame { get; set; }
 
-    public SpriteRenderer avatar { get; set; }
+    public PlayerAvatar avatar { get; set; }
 
     public enum GameMode
     {
@@ -36,17 +36,6 @@ public class PlayerController : MonoBehaviour
     public Action<PlayerController> onPrepared;
     public Action<PlayerController> onDisconnected;
     public Action<PlayerController, Move> onMoveSelect;
-
-    private static readonly int MoveAnimInt = Animator.StringToHash("Move");
-    private static readonly int PreparedAnimTrigger = Animator.StringToHash("Prepared");
-    private static readonly int ResetAnimTrigger = Animator.StringToHash("Reset");
-    private static readonly int PlayAnimTrigger = Animator.StringToHash("Play");
-
-    [SerializeField] private Sprite idleSprite;
-    [SerializeField] private Sprite preparedSprite;
-    [SerializeField] private Sprite rockSprite;
-    [SerializeField] private Sprite paperSprite;
-    [SerializeField] private Sprite scissorsSprite;
 
     private void Awake()
     {
@@ -80,7 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_gameMode == GameMode.InGame && _selectedMove == Move.None)
             {
-                avatar.sprite = preparedSprite;
+                avatar.SetState(PlayerAvatar.State.Prepared);
             }
         }
 
@@ -96,7 +85,7 @@ public class PlayerController : MonoBehaviour
         SetGameMode(GameMode.InGame);
         if (avatar)
         {
-            avatar.sprite = idleSprite;
+            avatar.SetState(PlayerAvatar.State.Idle);
         }
     }
 
@@ -107,13 +96,13 @@ public class PlayerController : MonoBehaviour
             switch (_selectedMove)
             {
                 case Move.Paper:
-                    avatar.sprite = paperSprite;
+                    avatar.SetState(PlayerAvatar.State.Paper);
                     break;
                 case Move.Rock:
-                    avatar.sprite = rockSprite;
+                    avatar.SetState(PlayerAvatar.State.Rock);
                     break;
                 case Move.Scissors:
-                    avatar.sprite = scissorsSprite;
+                    avatar.SetState(PlayerAvatar.State.Scissors);
                     break;
             }
         }

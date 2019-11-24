@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private IngameUi ingameUi;
 
-    [SerializeField] private SpriteRenderer larren;
-    [SerializeField] private SpriteRenderer tynha;
+    [SerializeField] private PlayerAvatar larren;
+    [SerializeField] private PlayerAvatar tynha;
 
     [SerializeField] private AudioSource elevatorMusic;
     [SerializeField] private AudioSource hardcoreMusic;

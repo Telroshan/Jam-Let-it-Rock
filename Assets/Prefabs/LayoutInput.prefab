@@ -63,7 +63,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 532286899ba5ab44a83d81024b53d7b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f6cbdf81978b094c88ba59c7e50296f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 532286899ba5ab44a83d81024b53d7b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b2124fd7b3b96c418354c24e7e4ef10, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -156,6 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7667753537388270709}
   - component: {fileID: 6845716074873304267}
+  - component: {fileID: 5384254284914288178}
   m_Layer: 5
   m_Name: LayoutInput
   m_TagString: Untagged
@@ -209,3 +210,22 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
+--- !u!95 &5384254284914288178
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235312211107481899}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45fc4484e44ac644695d07d1090c2fad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

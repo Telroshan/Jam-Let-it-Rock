@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public Action<PlayerController> onJoined;
     public Action<PlayerController> onPrepared;
     public Action<PlayerController> onDisconnected;
+    public Action<PlayerController, Move> onMoveSelect;
 
     private void Awake()
     {
@@ -59,9 +60,15 @@ public class PlayerController : MonoBehaviour
         return (Move) Random.Range((int) Move.Rock, (int) Move.Scissors + 1);
     }
 
+    private void SetMove(Move move)
+    {
+        _selectedMove = move;
+        onMoveSelect?.Invoke(this, _selectedMove);
+    }
+
     public void BeginTurn()
     {
-        _selectedMove = Move.None;
+        SetMove(Move.None);
         Debug.Log("Begin turn");
         SetGameMode(GameMode.InGame);
     }
@@ -71,9 +78,10 @@ public class PlayerController : MonoBehaviour
         if (!callbackContext.performed) return;
         switch (_gameMode)
         {
+            case GameMode.Preparation:
             case GameMode.InGame:
                 Debug.Log("ROCK");
-                _selectedMove = Move.Rock;
+                SetMove(Move.Rock);
                 break;
             case GameMode.SmashMinigame:
                 SmashMinigame.getPressedInput(playerId, Move.Rock);
@@ -86,9 +94,10 @@ public class PlayerController : MonoBehaviour
         if (!callbackContext.performed) return;
         switch (_gameMode)
         {
+            case GameMode.Preparation:
             case GameMode.InGame:
                 Debug.Log("PAPER");
-                _selectedMove = Move.Paper;
+                SetMove(Move.Paper);
                 break;
             case GameMode.SmashMinigame:
                 SmashMinigame.getPressedInput(playerId, Move.Paper);
@@ -101,9 +110,10 @@ public class PlayerController : MonoBehaviour
         if (!callbackContext.performed) return;
         switch (_gameMode)
         {
+            case GameMode.Preparation:
             case GameMode.InGame:
                 Debug.Log("SCISSORS");
-                _selectedMove = Move.Scissors;
+                SetMove(Move.Scissors);
                 break;
             case GameMode.SmashMinigame:
                 SmashMinigame.getPressedInput(playerId, Move.Scissors);

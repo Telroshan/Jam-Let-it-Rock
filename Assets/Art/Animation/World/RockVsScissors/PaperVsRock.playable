@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Start: 0.016666666666666666
     m_ClipIn: 0
     m_Asset: {fileID: 5282286528835905559}
-    m_Duration: 4.146970456714431
+    m_Duration: 5.1469704567144285
     m_TimeScale: 1
     m_ParentTrack: {fileID: -8128288333618945774}
     m_EaseInDuration: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.4427569918334484
+    m_Start: 2.4427569918334466
     m_ClipIn: 0
     m_Asset: {fileID: 239329350665182493}
     m_Duration: 0.3333333333333333
@@ -218,11 +218,11 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 2.0542134648809833
-    m_PreExtrapolationTime: 1.4427569918334484
+    m_PostExtrapolationTime: 2.054213464880982
+    m_PreExtrapolationTime: 2.4427569918334466
     m_DisplayName: EarthFadeIn
   - m_Version: 1
-    m_Start: 3.830303790047765
+    m_Start: 4.830303790047762
     m_ClipIn: 0
     m_Asset: {fileID: -6858478650021781004}
     m_Duration: 0.3333333333333333
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1
+    m_Start: 2
     m_ClipIn: 0
     m_Asset: {fileID: -3974883869514116241}
     m_Duration: 0.16666666666666666
@@ -447,7 +447,7 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 1
+    m_PreExtrapolationTime: 2
     m_DisplayName: Flash
   m_Markers:
     m_Objects: []
@@ -509,6 +509,28 @@ MonoBehaviour:
   m_bufferingTime: 0.1
   m_ClipProperties:
     volume: 1
+--- !u!114 &-891278376088942492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
+  m_Name: AnimationPlayableAsset
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 7400000, guid: 39ce08c1a75be534bbe786ca0f15a421, type: 2}
+  m_Position: {x: 0, y: 0, z: 0}
+  m_EulerAngles: {x: 0, y: 0, z: 0}
+  m_UseTrackMatchFields: 1
+  m_MatchTargetFields: 63
+  m_RemoveStartOffset: 1
+  m_ApplyFootIK: 1
+  m_Loop: 0
+  m_Version: 1
+  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +548,7 @@ MonoBehaviour:
   - {fileID: 3077441650176075220}
   - {fileID: -8128288333618945774}
   - {fileID: 2902944376962572085}
+  - {fileID: 8157439132877563880}
   - {fileID: 1076865747033704192}
   - {fileID: -3510295854930891661}
   - {fileID: 349638217594677813}
@@ -676,7 +699,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.4427569918334484
+    m_Start: 2.4427569918334466
     m_ClipIn: 0
     m_Asset: {fileID: 7217729775133569438}
     m_Duration: 0.3333333333333333
@@ -705,11 +728,11 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 0.6405763414998848
-    m_PreExtrapolationTime: 1.4427569918334484
+    m_PostExtrapolationTime: 0.6405763414998842
+    m_PreExtrapolationTime: 2.4427569918334466
     m_DisplayName: EarthPaperFadeIn
   - m_Version: 1
-    m_Start: 2.4166666666666665
+    m_Start: 3.4166666666666643
     m_ClipIn: 0
     m_Asset: {fileID: 2961156909391812680}
     m_Duration: 1
@@ -783,7 +806,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.4427569918334484
+    m_Start: 2.4427569918334466
     m_ClipIn: 0
     m_Asset: {fileID: 1224125164864855025}
     m_Duration: 2.7208801315476494
@@ -876,7 +899,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.4427569918334484
+    m_Start: 2.4427569918334466
     m_ClipIn: 0
     m_Asset: {fileID: 8936221165961369742}
     m_Duration: 1.973909674833218
@@ -969,7 +992,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1
+    m_Start: 2
     m_ClipIn: 0
     m_Asset: {fileID: -7835602299557031472}
     m_Duration: 0.7760903251667817
@@ -1086,10 +1109,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0.016666666666666666
+    m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -5370783606340198973}
-    m_Duration: 0.9833333333333333
+    m_Duration: 1
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2902944376962572085}
     m_EaseInDuration: 0
@@ -1117,6 +1140,39 @@ MonoBehaviour:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 1
+    m_PreExtrapolationMode: 1
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: Paper
+  - m_Version: 1
+    m_Start: 1
+    m_ClipIn: 0
+    m_Asset: {fileID: -891278376088942492}
+    m_Duration: 1
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 2902944376962572085}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1152,8 +1208,8 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 0.016666666666666666
-    m_DisplayName: Paper
+    m_PreExtrapolationTime: 0
+    m_DisplayName: FightPaper
   m_Markers:
     m_Objects: []
   m_InfiniteClipPreExtrapolation: 0
@@ -1301,6 +1357,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
+--- !u!114 &5169653170130124177
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
+  m_Name: AnimationPlayableAsset
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 7400000, guid: 764066daf94694347b6aa59e8093641b, type: 2}
+  m_Position: {x: 0, y: 0, z: 0}
+  m_EulerAngles: {x: 0, y: 0, z: 0}
+  m_UseTrackMatchFields: 1
+  m_MatchTargetFields: 63
+  m_RemoveStartOffset: 1
+  m_ApplyFootIK: 1
+  m_Loop: 0
+  m_Version: 1
+  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &5282286528835905559
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1335,7 +1413,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 2.3833333333333333
+    m_Start: 3.383333333333331
     m_ClipIn: 0
     m_Asset: {fileID: -2351071296062540967}
     m_Duration: 0.528
@@ -1431,6 +1509,116 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &8157439132877563880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21dcc2386d650c4597f3633c75a1f98, type: 3}
+  m_Name: Animation Track (4)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 1
+    m_ClipIn: 0
+    m_Asset: {fileID: 5169653170130124177}
+    m_Duration: 1
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 8157439132877563880}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 1
+    m_PreExtrapolationMode: 1
+    m_PostExtrapolationTime: Infinity
+    m_PreExtrapolationTime: 1
+    m_DisplayName: FightRock
+  m_Markers:
+    m_Objects: []
+  m_InfiniteClipPreExtrapolation: 0
+  m_InfiniteClipPostExtrapolation: 0
+  m_InfiniteClipOffsetPosition: {x: 0, y: 0, z: 0}
+  m_InfiniteClipOffsetEulerAngles: {x: 0, y: 0, z: 0}
+  m_InfiniteClipTimeOffset: 0
+  m_InfiniteClipRemoveOffset: 0
+  m_InfiniteClipApplyFootIK: 1
+  mInfiniteClipLoop: 0
+  m_MatchTargetFields: 63
+  m_Position: {x: 0, y: 0, z: 0}
+  m_EulerAngles: {x: 0, y: 0, z: 0}
+  m_AvatarMask: {fileID: 0}
+  m_ApplyAvatarMask: 1
+  m_TrackOffset: 0
+  m_InfiniteClip: {fileID: 0}
+  m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_ApplyOffsets: 0
 --- !u!114 &8936221165961369742
 MonoBehaviour:
   m_ObjectHideFlags: 1

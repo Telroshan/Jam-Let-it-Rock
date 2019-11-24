@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
 public class SmashMinigame : MonoBehaviour
 {
     public Sprite[] Sprites;
+    public Material[] Materials;
 
     [SerializeField] private Image Player1Input;
     [SerializeField] private Image Player2Input;
@@ -34,14 +36,18 @@ public class SmashMinigame : MonoBehaviour
     public void getPressedInput(int playerId, Move move)
     {
         if (move.CompareTo((Move) (minigameInput + 1)) != 0) return;
-
+        
+        Debug.Log("Move chosen : " + Convert.ToInt32( move));
+        
         if (playerId == 1)
         {
+            Player1ParticleSystem.GetComponent<Renderer>().material = Materials[Convert.ToInt32( move) - 1];
             SetCursor(countOfButtons + 1);
             Player1ParticleSystem.Emit(1);
         }
         else
         {
+            Player2ParticleSystem.GetComponent<Renderer>().material = Materials[Convert.ToInt32( move) - 1];
             SetCursor(countOfButtons - 1);
             Player2ParticleSystem.Emit(1);
         }

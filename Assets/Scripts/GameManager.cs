@@ -205,11 +205,11 @@ public class GameManager : MonoBehaviour
     {
         if (_player1.score > _player2.score)
         {
-            WinnerStatic.WinnerText = "Player 1";
+            WinnerStatic.player1Won = true;
         }
         else
         {
-            WinnerStatic.WinnerText = "Player 2";
+            WinnerStatic.player1Won = false;
         }
 
         SceneManager.LoadScene("EndGame");

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class WinnerStatic
 {
-    public static string WinnerText { get; set; }
+    public static bool player1Won { get; set; }
 }

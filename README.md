@@ -1,4 +1,4 @@
-# Jam - Let It Rock
+# Jam - Let it Rock
 
 ## Pitch
 Defeat a friend of yours in a rock, paper, scissors game, with spicy encounters.
@@ -10,7 +10,7 @@ Defeat a friend of yours in a rock, paper, scissors game, with spicy encounters.
 
 2 teams of 6 (3 artists, 3 devs) had 36 hours to create a game around the following theme : "Set it up, Let it go".
 
-Let It Rock is one of those two games.
+Let it Rock is one of those two games.
 
 The other game is [The Perfect Recipe](https://twitter.com/MistaleStudio/status/1198904370940776448), a VR game in which you have to cook the right potion at the right time to defeat your enemies !
 

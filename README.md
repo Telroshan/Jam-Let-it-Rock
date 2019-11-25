@@ -14,6 +14,7 @@ Let It Rock is one of those two games.
 
 ## Rules
 The first player that reaches 5 points wins the game.
+
 When a player has an advantage of at least 2 points, a minigame occurs at the end of the round.
 - [Smash](https://twitter.com/MistaleStudio/status/1198682211643482114) : smash the displayed input faster than your opponent to win this minigame !
 - Don't press : if you press the displayed input, you lose. That's where the IRL fight begins...

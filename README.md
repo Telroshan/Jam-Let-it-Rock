@@ -14,6 +14,8 @@ Let it Rock is one of those two games.
 
 The other game is [The Perfect Recipe](https://twitter.com/MistaleStudio/status/1198904370940776448), a VR game in which you have to cook the right potion at the right time to defeat your enemies !
 
+Made with [Unity](https://unity.com/).
+
 ## Rules
 The first player that reaches 5 points wins the game.
 

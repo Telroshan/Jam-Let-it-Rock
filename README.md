@@ -1,9 +1,5 @@
 # Jam - Let It Rock
 
-2 teams of 6 (3 artists, 3 devs) had 36 hours to create a game around the following theme : "Set it up, Let it go".
-
-Let It Rock is one of those two games.
-
 ## Pitch
 Defeat a friend of yours in a rock, paper, scissors game, with spicy encounters.
 
@@ -11,6 +7,10 @@ Defeat a friend of yours in a rock, paper, scissors game, with spicy encounters.
 
 ## Context 
 2nd edition of the internal Mistale Game Jam (follow us on [Twitter](https://twitter.com/MistaleStudio), [Facebook](https://www.facebook.com/MistaleStudio/) and [Instagram](https://www.instagram.com/mistalestudio/) btw !)
+
+2 teams of 6 (3 artists, 3 devs) had 36 hours to create a game around the following theme : "Set it up, Let it go".
+
+Let It Rock is one of those two games.
 
 ## Rules
 The first player that reaches 5 points wins the game.

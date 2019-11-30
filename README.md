@@ -47,3 +47,6 @@ Use the left joystick and ![Button_A](https://user-images.githubusercontent.com/
 Musics : [bensound.com](https://www.bensound.com/)
 
 Sounds : [noiseforfun.com](https://www.noiseforfun.com/waves/) and [freesound.org](https://freesound.org/)
+
+# License
+This repo is [MIT licensed](https://github.com/Telroshan/Jam-Let-it-Rock/blob/master/LICENSE).
